@@ -1,0 +1,13 @@
+5 5 # width height
+0.1 # noise
+-0.08 # immediate rewards (for all non-terminal states)
+T 4 2 1 # Terminal state (x,y,reward)
+T 1 2 -1 # Terminal stats (x,y,reward)
+T 3 2 -1 # Terminal stats (x,y,reward)
+W 1 1 # Wall (x,y)
+W 2 1 # Wall (x,y)
+W 3 1 # Wall (x,y)
+W 2 2 # Wall (x,y)
+W 1 3 # Wall (x,y)
+W 2 3 # Wall (x,y)
+W 3 3 # Wall (x,y)
