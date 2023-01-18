@@ -1,0 +1,71 @@
+Global navigation satellite systems
+Computers and Electronics in Agriculture, no. 25, pp. 67-85, 2000.
+W. Lechner and S. Baumann
+
+1. Explain the main idea of GPS, how the system works, 
+	how many satellite signals are necessary toachieve a position estimate in three dimensions (x, y, z)?
+S: A GPS reciever uses the distance to GPS sattelites to calculate its position,
+ at least 4 sattelites are neccesary to provide a position in three dimensions. 
+
+2. What is gained by using differential GPS?
+	 How does a differential GPS works? 
+		If you, on yourown, should build a differential GPS system, how would you do it?
+S:Differential GNSS is a way of augmenting a GNSS signal, increasing its accuracy,
+it uses a stationary station with a known position to increase the accuracy of the predicted position.
+To build one on my own I would need an antenna and broadcast a GNSS message with position and time.
+
+3. What sources of errors affect the position estimate of the GPS,
+	 and thus also the DGPS?
+S: Geometric position of sattelites, clock errors of sattelites,
+ephemeris errors, tropospheric and ionospheric conditions, multipath effect and
+inaccuracies of the reciever, SA
+
+4. What does it means that satellites are geo-stationary?
+	 Give some examples of systems that are using geo-stationary satellites.
+S: Geo-stationary sattelites stays in the same position in the sky meaning they take one day to orbit.
+EGNOS uses geo-stationary sattelites above the atlantic and indian oceans to augment their GNSS signals
+the Japanese MSAS uses a geo-stationary sattelite at 36000 km above the equator at longitude 140 E
+
+5. Galileo is an European co-operation, why is this system developed? 
+	Why not simple use the existing GPS systems?
+S: Exisiting systems are developed by the militaries of USA and Russia and may present a 
+security risk for users, therefore galileo wants to develope a civilian GNSS.
+
+6. The SA (Selective Availability) signal, was in 2000 removed by the order of the American president.
+	 What does the SA signal do? Although, removed, the SA signal still leads to problem for e.g. European industry, why?
+S:The SA signal deteriorates the GPS signal to prevent its use by hostile forces, the SA signal is the largest and most important source of error.
+
+Precision Agriculture: Untangling the GPS Data String
+Adamchuk, Viacheslav I., "EC01-157 Precision Agriculture: Untangling the GPS Data String" (2001).
+Historical Materials from University of Nebraska-Lincoln Extension. Paper 707.
+
+1. Why is it necessary to convert latitudes and longitudes from degrees, 
+	minutes and decimal minutes to decimal degrees only? How is this done?
+S: Computations need decimal values dd.dddddd = dd + mm.mmmm/60
+
+2. Why is the conversion of longitude and latitude into linear units complicated? 
+	Why is the latitude so important in equation 7? 
+		How are Flon and Flat used for conversion of latitude and longitude intometers?
+S: Since the conversions takes place on an ellipsoid changes in longitude depends on latitude
+, latitude is important in equation 7 since each parralel represents a circle of constant radius
+the radius is used to determine th longitude conversion factor Flon, phi is determined by latitude.
+The units used for a,b and h in equation 7 determine the unit of the output.
+
+3. How is speed calculated? Derive an expression for speed in m/s using latitude and longitude as input?
+S: Speed is calculated by taking the distance between to points divided by the time
+between the measurements. 
+longitude = lambda, latitude = phi, time = tau
+sqrt((Flat(phi1-phi2))^2+(Flon(lambda1-lambda2))^2)/(tau2-tau1) = speed
+
+4. How do you decide if you travel in straight north or straight south direction using two points in latitude and longitude as input?
+S: If lambda(longitude) is the same for both points you must be traveling north or south,
+if phi1 is lesser than phi2 you are traveling north and the opposite for south.
+
+5. What is heading? Is the traveling direction and heading of a vehicle,
+	 equipped with a GPS, thesame? What is the condition of them to be the same? 
+	(Tip: if you standing still with you vehicle,can you get the heading then?) .
+S: Heading is the direction in which you are moving, represented as the angle between your
+direction and north(0). You can only get the heading if you are moving since you need to take two measurements.
+
+
+
