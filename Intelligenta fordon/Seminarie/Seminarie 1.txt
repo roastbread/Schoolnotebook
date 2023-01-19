@@ -45,7 +45,7 @@ S: Computations need decimal values dd.dddddd = dd + mm.mmmm/60
 
 2. Why is the conversion of longitude and latitude into linear units complicated? 
 	Why is the latitude so important in equation 7? 
-		How are Flon and Flat used for conversion of latitude and longitude intometers?
+		How are Flon and Flat used for conversion of latitude and longitude into meters?
 S: Since the conversions takes place on an ellipsoid changes in longitude depends on latitude
 , latitude is important in equation 7 since each parralel represents a circle of constant radius
 the radius is used to determine th longitude conversion factor Flon, phi is determined by latitude.
