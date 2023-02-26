@@ -1,0 +1,23 @@
+1. Any constant errors are exponentially increased by integration, until they reach infinity.
+
+2. Get a better sensor, calibrate the sensor often or fuse the sensor signal with another.
+
+3. If the sensor is saturated there will be information loss that will transfer to the integration rendering the data useless.
+
+4. In a noisy signal a derivation will potentialy record great changes in the signal even if the signal is stedy. If a robot arm with a noisy angle sensor is stationary, a derivated signal would record high speed in both direcions.
+
+5. --||--
+
+6. Use a low pass filter to remove high frequencies that play havoc with the derivation
+
+7. In sampled systems a long sample time will behave like a low-pass filter and for shorter sample times the signal approaces a continous.
+
+8. The dynamic of a sensor becomes relevant when you have specific dynamics for an application that needs to be matched.
+
+9. If the application is time dependant, and potentially with high frequencies.
+
+10. Plot a step response of the sensor and calculate its dynamics.
+
+11. It would be unable to detect small changes in velocity.
+
+12. It would be able to handle the sensing task on its own without the need for other sensors or signal processing.

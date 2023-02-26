@@ -1,0 +1,10 @@
+1.Path planner is an off-board component that decides which path the robot should take as segments of lines or arcs, Reference Trajectory Generator plots the trajectory of the path provided by the path planner so the robot knows what position it should have at every point in the path, Cart Controller uses feedback compensation to ensure the errors between the desired state and the measured state rea'mains small, Cart Dynamics and kinematics describes the physical properties of the robot dynamics focuses more on the load and friction while kinematics describe the wheel layout and steering angles, Odometry is a way for the robot to decide its own position using only wheel speed and steering angle, Position Estimation uses a model based on a saved map and distance sensors combined with the odometry to make a reliable position estimate. Obstacle detection should be placed before Reference Trajectory Planner. 
+2.Matcher takes the longest, position updates ever 8 seconds 
+3.It uses dense 2-d data becouse it only uses it to determine its position and not to path plan.
+4.C describes the current position, R describes the position of the rangefinder in relation to the cart, r is the range detected by the rangefinder and alpha is the angle where that range was measured
+5.For each point find the nearest line segment, find a shape that minimizes the squared distance between each point and the target, move the points to the new shape, repeat until convergeance. This will greatly reduce the displacement.
+6.It changes tthe targets to infinite lines and pseudocongruence is used. The purpouse is to reduce complexity. Yes, by using the least-square method.
+7.By iterating errors coming from outliers can be minimized
+8.It terminates when the congruence converges
+9.Outliers need to be rejected in order to keep the model robust against changes in the enviroment like moving people.
+10.It is important to kow the error in order to trust the measurements. It can make the robot run into things due to taking risks if the covariance estimate is too small. If the covariance is too large the robot will refuse to move since it is too uncertain.
