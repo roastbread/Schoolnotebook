@@ -93,7 +93,19 @@ for kk=2:N,
     %drawnow();
 end;
 
+conX=CONTROL(end,3)
+conY=CONTROL(end,4)
+conA=CONTROL(end,5)
 
+predX=X(end)
+predY=Y(end)
+predA=A(end)
+
+eX=conX-predX
+eY=conY-predY
+eA=conA-predA
+
+sd=[sqrt(P(end,1)),sqrt(P(end,4)),sqrt(P(end,7))]
 disp('Plotting ...');
 
 % Plot the path taken by the robot, by plotting the uncertainty in the current position

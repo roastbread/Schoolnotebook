@@ -1,7 +1,7 @@
 %
 % Dead Reckoning with Snowhite Steed-drive Robot
 %
-% Bj�rn �strand
+% Björn Åstrand
 %
 
 clear all;
@@ -57,7 +57,7 @@ for kk=2:N,
 
     
     %Cu =   [k1*abs(v1) 0 0;0 k2 0;0 0 k3];               % Uncertainty in the input variables [3x3]
-    k1 = 0.05^2; k2 = 0.1^2; k3=0.1^2;k=0.01;
+    k=0.005;
     sigVAT = [k*abs(v) 0 0; 0 k*a 0; 0 0 k*T];
  
     %Axya = [1 0 -dY;0 1 dX;0 0 1];     % Jacobian matrix w.r.t. X, Y and A [3x3] (JXk-1)
@@ -93,13 +93,23 @@ for kk=2:N,
     %drawnow();
 end;
 
+conX=CONTROL(end,3)
+conY=CONTROL(end,4)
+conA=CONTROL(end,5)
 
+predX=X(end)
+predY=y(end)
+predA=A(end)
+
+eX=conX-predX
+eY=conY-predX
+eX=conX-predX
 disp('Plotting ...');
 
 % Plot the path taken by the robot, by plotting the uncertainty in the current position
 figure; 
-   plot(X, Y, 'b.'); hold on; % By dead reconing 
-    plot(abs(CONTROL(:,3)-X),abs(CONTROL(:,4)-Y),'k.'); % Ground Truth
+    plot(X, Y, 'b.'); hold on; % By dead reconing 
+    plot(CONTROL(:,3),CONTROL(:,4),'k.'); % Ground Truth
     title('Path taken by the robot [Wang]');
     xlabel('X [mm] World co-ordinates');
     ylabel('Y [mm] World co-ordinates');
@@ -107,43 +117,43 @@ figure;
     diffA(1) = 0;
     diffY(1) = 0;
     hold on;
-        for kk = 1:1:N, % Change the step to plot less seldom, i.e. every 5th
-            %C = [P(kk,1:3);P(kk,4:6);P(kk,7:9)];
-            %plot_uncertainty([X(kk) Y(kk) A(kk)]', C, 1, 2,'r')
-            diffX(kk) = ((X(kk)-CONTROL(kk,3)));
-            diffY(kk) = ((Y(kk)-CONTROL(kk,4)));
-            diffA(kk) = ((A(kk)-CONTROL(kk,5)));
+        for kk = 1:5:N, % Change the step to plot less seldom, i.e. every 5th
+            C = [P(kk,1:3);P(kk,4:6);P(kk,7:9)];
+            plot_uncertainty([X(kk) Y(kk) A(kk)]', C, 1, 2,'r') %Du måste fixa din plot_uncertatiny med en färg så du kan köra koden
+            %diffX(kk) = ((X(kk)-CONTROL(kk,3)));               %Det behövs en extra input i functionen.
+            %diffY(kk) = ((Y(kk)-CONTROL(kk,4)));
+            %diffA(kk) = ((A(kk)-CONTROL(kk,5)));
         end;
     hold off;
     axis('equal');
     
         
-figure;
- subplot(3,1,1); histogram(diffX,15,'FaceColor',"black"); title('X [mm]');
- subplot(3,1,2); histogram(diffY,15,'FaceColor',"black"); title('Y [mm]');
- subplot(3,1,3); histogram(diffA,15,'FaceColor',"black"); title('A [mm]');
-
- 
-figure;
- subplot(3,1,1); plot(diffX, 'k'); title('X [mm]');
- subplot(3,1,2); plot(diffY, 'k'); title('Y [mm]');
- subplot(3,1,3); plot(diffA, 'k'); title('A [mm]');
-
-subplot(3,1,1); hold on;
-    plot(sqrt(P(:,1)), 'r:');
-    plot(-sqrt(P(:,1)), 'r:');
-hold off;
-
-
-subplot(3,1,3);hold on;
-    plot(sqrt(P(:,9)), 'r:');
-    plot(-sqrt(P(:,9)), 'r:');
-hold off;
-
-subplot(3,1,2);hold on;
-    plot(sqrt(P(:,5)), 'r:');
-    plot(-sqrt(P(:,5)), 'r:');
-hold off;
+% figure;
+%  subplot(3,1,1); histogram(diffX,15,'FaceColor',"black"); title('X [mm]');
+%  subplot(3,1,2); histogram(diffY,15,'FaceColor',"black"); title('Y [mm]');
+%  subplot(3,1,3); histogram(diffA,15,'FaceColor',"black"); title('A [mm]');
+% 
+%  
+% figure;
+%  subplot(3,1,1); plot(diffX, 'k'); title('X [mm]');
+%  subplot(3,1,2); plot(diffY, 'k'); title('Y [mm]');
+%  subplot(3,1,3); plot(diffA, 'k'); title('A [mm]');
+% 
+% subplot(3,1,1); hold on;
+%     plot(sqrt(P(:,1)), 'r:');
+%     plot(-sqrt(P(:,1)), 'r:');
+% hold off;
+% 
+% 
+% subplot(3,1,3);hold on;
+%     plot(sqrt(P(:,9)), 'r:');
+%     plot(-sqrt(P(:,9)), 'r:');
+% hold off;
+% 
+% subplot(3,1,2);hold on;
+%     plot(sqrt(P(:,5)), 'r:');
+%     plot(-sqrt(P(:,5)), 'r:');
+% hold off;
 
 % After the run, plot the results (X,Y,A), i.e. the estimated positions 
 figure;
